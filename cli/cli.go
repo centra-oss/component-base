@@ -21,6 +21,9 @@ func Run(cmd *cobra.Command) int {
 func run(cmd *cobra.Command) (err error) {
     rand.Seed(time.Now().UnixNano())
 
+    // In all cases, errors are handled below.
+    cmd.SilenceErrors = true
+
     switch {
     case cmd.PersistentPreRun != nil:
         pre := cmd.PersistentPreRun
