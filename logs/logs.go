@@ -3,7 +3,6 @@ package logs
 import (
 	"fmt"
 	"log"
-	"os"
 	"time"
 
 	"k8s.io/klog/v2"
