@@ -1,6 +1,7 @@
 package logs
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"time"
@@ -9,8 +10,14 @@ import (
 )
 
 var (
+    packageFlags = flag.NewFlagSet("logging", flag.ContinueOnError)
     logFlushFreq time.Duration
 )
+
+func init() {
+    klog.InitFlags(packageFlags)
+	packageFlags.DurationVar(&logFlushFreq, "log-flush-frequency", 5 * time.Second, "Maximum number of seconds between log flushes")
+}
 
 // KlogWriter serves as a bridge between the standard log package and the glog package.
 type KlogWriter struct{}
